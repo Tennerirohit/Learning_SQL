@@ -57,18 +57,6 @@ INSERT INTO order_items VALUES
 (4,203,101,1), 
 (5,203,102,1); 
 
-select c.name,c.customer_id,sum(o.amount)
-from customers as c
-inner join orders as o 
-on c.customer_id=o.customer_id
-having c.customer_id = (select o.customer_id 
-from orders
-group by o.customer_id
-having max(amount)
-limit 1)
-;
-
-
 select * from customers
 where customer_id= (select customer_id
 from orders
